@@ -1,0 +1,15 @@
+# Blueprint only. Do not deploy until an authenticated builder heartbeat exists
+# and the owner approves Render's billed cron service.
+services:
+  - type: cron
+    name: orvendi-builder-heartbeat-check
+    runtime: node
+    plan: starter
+    schedule: "*/10 * * * *"
+    buildCommand: "node --version"
+    startCommand: "node monitor.mjs"
+    envVars:
+      - key: BUILDER_HEARTBEAT_URL
+        sync: false
+      - key: MAX_AGE_MINUTES
+        value: "90"
