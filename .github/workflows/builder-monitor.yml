@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      - name: Verify monitor logic (success and failure simulations)
+        run: node --test heartbeat.test.mjs
       - name: Check builder heartbeat
         env:
           BUILDER_HEARTBEAT_URL: ${{ secrets.BUILDER_HEARTBEAT_URL }}
