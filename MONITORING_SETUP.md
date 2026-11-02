@@ -11,3 +11,7 @@ Status: **NOT DEPLOYED**. This repository holds a proposed check, not a running 
 7. The monitor can detect missing heartbeats; it **cannot automatically re-enable ChatGPT scheduled tasks** without an authorized, supported scheduler API.
 
 No credentials should be committed. The repository currently has no known builder status endpoint.
+
+## Verified 2026-11-02
+
+Base44 app `6ad9315519616aa7725f81fa` has an active *Ambient Chatter* workflow (every 30 minutes; latest observed success 2026-11-02T12:01:55Z). This is NOT the ChatGPT hourly builder and MUST NOT be substituted as its heartbeat. GitHub Actions failure confirms `BUILDER_HEARTBEAT_URL` unset. Do not add fake success timestamps. A supported ChatGPT scheduler API or a builder-owned completion callback is required to monitor builder progress accurately.
