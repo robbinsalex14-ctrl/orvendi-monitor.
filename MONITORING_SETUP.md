@@ -15,3 +15,11 @@ No credentials should be committed. The repository currently has no known builde
 ## Verified 2026-11-02
 
 Base44 app `6ad9315519616aa7725f81fa` has an active *Ambient Chatter* workflow (every 30 minutes; latest observed success 2026-11-02T12:01:55Z). This is NOT the ChatGPT hourly builder and MUST NOT be substituted as its heartbeat. GitHub Actions failure confirms `BUILDER_HEARTBEAT_URL` unset. Do not add fake success timestamps. A supported ChatGPT scheduler API or a builder-owned completion callback is required to monitor builder progress accurately.
+
+## Implementation 2026-11-02
+
+GitHub Actions checks every ~10 minutes (best effort), and now executes `node --test heartbeat.test.mjs` before the real check. The six local regression tests passed, covering healthy, stale, missing, malformed, insecure, and HTTP-error cases. The real scheduled check still fails closed until `BUILDER_HEARTBEAT_URL` is configured with a builder-owned HTTPS endpoint.
+
+The repo is currently PUBLIC. Do not add app source, API tokens, private status, or private endpoint credentials. Render currently has no deployed services; creating a paid runner is NOT authorized. No supported autonomous hourly coding runner has been connected. Do not claim unattended code development or end-to-end alerting is working. GitHub Actions failure status is visible in Actions; email notification delivery has not been verified.
+
+Next owner-gated requirements: (1) choose and authorize an independent runner with a supported credential path and acceptable cost; (2) make repository private or establish an appropriate private project before attaching code; (3) wire a genuine success-only heartbeat and secure read access; (4) test a real completed cycle and notification delivery.
