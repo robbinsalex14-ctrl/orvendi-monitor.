@@ -1,0 +1,18 @@
+name: Orvendi builder heartbeat monitor
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-builder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check builder heartbeat
+        env:
+          BUILDER_HEARTBEAT_URL: ${{ secrets.BUILDER_HEARTBEAT_URL }}
+          MAX_AGE_MINUTES: '90'
+        run: node monitor.mjs
