@@ -1,7 +1,5 @@
 name: Orvendi builder heartbeat monitor
 on:
-  schedule:
-    - cron: '*/10 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
